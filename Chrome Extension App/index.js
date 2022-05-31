@@ -7,7 +7,6 @@ myLead.push("j;asjk");
 myLead = JSON.stringify(myLead);
 
 console.log(typeof myLead);
-myLead = JSON.parse(myLead);
 
 const inputBtn = document.getElementById("input-btn");
 const inputEl = document.getElementById("input-el");
