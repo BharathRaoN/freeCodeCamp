@@ -4,13 +4,27 @@ const inputBtn = document.getElementById("input-btn");
 const inputEl = document.getElementById("input-el");
 const ulEl = document.getElementById("ul-el");
 const deleteBtn = document.getElementById("delete-btn");
+const tabBtn = document.getElementById("tab-btn");
 
 let LeadsFromLocalStorage = JSON.parse(localStorage.getItem("myLeads"));
 
+const tabs = [
+  {
+    url: "https://www.linkedin.com/in/per-harald-borgen/",
+  },
+];
+
 if (LeadsFromLocalStorage) {
   myLeads = LeadsFromLocalStorage;
-  renderLeads();
+  render(myLeads);
 }
+
+tabBtn.addEventListener("click", () => {
+  myLeads.push(tabs[0].url);
+  let sample = JSON.stringify(myLeads);
+  localStorage.setItem("myLeads", sample);
+  render(myLeads);
+});
 
 inputEl.addEventListener("keypress", (Event) => {
   if (Event.key == "Enter") {
@@ -23,26 +37,21 @@ inputBtn.addEventListener("click", () => {
   myLeads.push(inputEl.value);
   inputEl.value = null;
   localStorage.setItem("myLeads", JSON.stringify(myLeads));
-  renderLeads();
+  render(myLeads);
 });
 
 deleteBtn.addEventListener("dblclick", () => {
   localStorage.clear();
   myLeads = [];
-  renderLeads();
-});
-deleteBtn.addEventListener("keypress", (Event) => {
-  if (Event.key == "Enter") {
-    deleteBtn.dblclicl();
-  }
+  render(myLeads);
 });
 
-function renderLeads() {
+function render(leads) {
   let listitems = "";
-  for (let i = 0; i < myLeads.length; i++) {
+  for (let i = 0; i < leads.length; i++) {
     listitems += `
     <li>
-    <a href= "${myLeads[i]}" target="_blank"> ${myLeads[i]}</a> 
+    <a href= "${leads[i]}" target="_blank"> ${leads[i]}</a> 
     </li>
     `;
   }
