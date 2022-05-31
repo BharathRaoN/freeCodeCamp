@@ -1,12 +1,17 @@
-let myLead = [];
+let myLead = '["jksdhfksajh","kjsdahfkjh"]';
+
+myLead = JSON.parse(myLead);
+
+myLead.push("j;asjk");
+
+myLead = JSON.stringify(myLead);
+
+console.log(typeof myLead);
+myLead = JSON.parse(myLead);
 
 const inputBtn = document.getElementById("input-btn");
 const inputEl = document.getElementById("input-el");
 const ulEl = document.getElementById("ul-el");
-
-localStorage.setItem("myLead", "www.facebook.com");
-localStorage.clear();
-console.log(localStorage.getItem("myLead"));
 
 inputEl.addEventListener("keypress", (Event) => {
   if (Event.key == "Enter") {
